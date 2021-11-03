@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector: # note: service's API is older and only supports matching by labels, hence it's omitted
+    # which deployments should be managed by this object (in this case, only `app: second-app`,
+    # `tier` will be ignored
+    app: second-app
+  ports:
+    - protocol: 'TCP'
+      port: 80 # port you want to expose the Service on
+      targetPort: 8080 # port inside the container (app port)
+  type: LoadBalancer # most common, uses cluster infrastructure's load balancer,
+                     # through which the Service gets outside world access and equal traffic distribution
+                     # other options include:
+                     # * NodePort  - expose on IP and port of the Worker Node
+                     # * ClusterIP - only visible within the cluster

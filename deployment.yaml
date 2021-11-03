@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: second-app-deployment
+spec: # specification of the object (in this case 'Deployment')
+  replicas: 1
+  selector: # tells the object which Pods should be controlled by it
+    matchLabels:
+      app: second-app
+  template: # Pod specification
+    metadata:
+      labels:
+        app: second-app # arbitrary names, e.g., 'app: <someApp>, 'depl-app: <smth>' etc.
+        tier: tier-app
+    spec: # specification of the Pod
+      containers:
+        - name: second-application
+          # image needs to be from registry, can be set to :latest to pick up the freshest image,
+          # otherwise you need to specify a new tag (e.g., increment version :2 => :3);
+          # or set `imagePullPolicy`
+          image: michaelz95/education:2
+          imagePullPolicy: Always # to force pull the latest image from the registry
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            periodSeconds: 10 # probing interval
+            initialDelaySeconds: 5 # how much to wait for initial probe to occur
