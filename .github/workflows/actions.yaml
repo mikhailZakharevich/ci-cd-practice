@@ -10,11 +10,15 @@ jobs:
   run-github-actions: # jobs are run in parallel unless you define dependencies on other jobs via 'jobs.<job_id>.needs'
     runs-on: ubuntu-latest
     steps:
-      - name: simple js action
+      - name: List files
+        run: |
+          pwd
+          ls
+      - name: Simple js action
         id: greet
         # can reference actions defined locally via ./... or from some repository
         uses: actions/hello-world-javascript-action@v1 # @<n>: n - specify a version/branch/commit_id (version is preferable)
         with: # provide some input for the action
           who-to-greet: John
-      - name: log greeting time
+      - name: Log greeting time
         run: echo "${{ steps.greet.outputs.time }}" # call the output of the action with id `greet`
