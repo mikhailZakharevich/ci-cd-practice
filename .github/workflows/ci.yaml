@@ -1,0 +1,15 @@
+name: Shell Commands
+
+on: [push] # define events that should trigger the workflow
+
+jobs:
+  # job's name
+  run-shell-command: # jobs are run in parallel unless you define dependencies on other jobs via 'jobs.<job_id>.needs'
+    runs-on: ubuntu-20.04
+    steps:
+      - name: first step
+        run: echo "Hello world" # define a shell command to execute
+      - name: miltiline step
+        run: |
+          node -v
+          npm -v
