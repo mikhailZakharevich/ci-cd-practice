@@ -14,6 +14,12 @@ jobs:
         run: |
           pwd
           ls
+      - name: Checkout
+        uses: actions/checkout@v1 # will fetch the code from the commit that triggered the workflow to run
+      - name: Check files after checkout
+        run: |
+          pwd
+          ls -a
       - name: Simple js action
         id: greet
         # can reference actions defined locally via ./... or from some repository
