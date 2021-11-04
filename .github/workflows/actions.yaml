@@ -14,7 +14,17 @@ jobs:
         run: |
           pwd
           ls
+          echo $GITHUB_SHA
+          echo $GITHUB_REPOSITORY
+          echo $GITHUB_WORKSPACE
+          echo "${{ github.token }}"
+#          alternative way to Checkout
+#          git clone git@github:$GITHUB_REPOSITORY
+#          git checkout $GITHUB_SHA
+        # echo $GITHUB_SHA - get the commit id that triggered the workflow
+        # echo "${{ github.token }}" - get token with which you cau authenticate to the GH repository
       - name: Checkout
+        # `checkout` - one of the default actions
         uses: actions/checkout@v1 # will fetch the code from the commit that triggered the workflow to run
       - name: Check files after checkout
         run: |
