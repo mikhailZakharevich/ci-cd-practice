@@ -23,6 +23,7 @@ jobs:
         shell: python # choose a specific shell to run this command on
   run-windows-commands:
     runs-on: windows-latest
+    needs: ["run-shell-command"] # defining dependency on the job above, so the will be run sequentially
     steps:
       - name: directory PowerShell
         run: Get-Location
