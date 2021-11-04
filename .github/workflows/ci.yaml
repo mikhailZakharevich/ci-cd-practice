@@ -2,6 +2,9 @@ name: Shell Commands
 
 on: [push] # define events that should trigger the workflow
 
+# to enable additional logging for debug purposes, go to repo -> Settings -> Secrets -> new repo secret
+# add ACTIONS_RUNNER_DEBUG, set it to `true` (runner level)
+# add ACTIONS_STEP_DEBUG, set it to `true` (debug each step)
 jobs:
   # job's name
   run-shell-command: # jobs are run in parallel unless you define dependencies on other jobs via 'jobs.<job_id>.needs'
@@ -13,3 +16,8 @@ jobs:
         run: |
           node -v
           npm -v
+      - name: python commands
+        run: |
+          import platform
+          print(platform.processor())
+        shell: python # choose a specific shell to run this command on
