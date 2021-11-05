@@ -1,6 +1,10 @@
 name: Actions Workflow
 
-on: [push] # define events that should trigger the workflow
+#on: [push, pull_request] # define events that should trigger the workflow
+on:
+  push:
+  pull_request:
+    types: [closed, assigned, opened, reopened]
 
 # to enable additional logging for debug purposes, go to repo -> Settings -> Secrets -> new repo secret
 # add ACTIONS_RUNNER_DEBUG, set it to `true` (runner level)
