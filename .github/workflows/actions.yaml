@@ -20,8 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get Payload
-        run: echo "${{ github.event.client_payload.env }}" # fetch the specified field `env` (custom field)
-                                                           # from `client_payload` field
+        run: echo "${{ github.event.client_payload.env }}" # fetch a value from the field `env` (custom field)
+                                                           # from `client_payload`
       - name: List files
         run: |
           pwd
