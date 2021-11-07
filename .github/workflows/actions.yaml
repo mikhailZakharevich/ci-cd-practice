@@ -19,6 +19,9 @@ jobs:
   run-github-actions: # jobs are run in parallel unless you define dependencies on other jobs via 'jobs.<job_id>.needs'
     runs-on: ubuntu-latest
     steps:
+      - name: Get Payload
+        run: echo "${{ github.event.client_payload.env }}" # fetch the specified field `env` (custom field)
+                                                           # from `client_payload` field
       - name: List files
         run: |
           pwd
