@@ -2,7 +2,12 @@ name: Actions Workflow
 
 #on: [push, pull_request] # define events that should trigger the workflow
 on:
-  push:
+  repository_dispatch:
+    types: [build] # will only run the action for the specified event types
+#  push:
+#  schedule:
+#    - cron: "* * * * *" # minutes - hours - d/month - month - d/week; check `ctontab guru`
+                         # ex: "1 * * * *" - the job will be run at first minute of every hour (12.01, 13.01 etc.)
   pull_request:
     types: [closed, assigned, opened, reopened]
 

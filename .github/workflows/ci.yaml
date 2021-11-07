@@ -1,6 +1,6 @@
 name: Shell Commands
 
-on: [push] # define events that should trigger the workflow
+on: [pull_request] # define events that should trigger the workflow
 
 # to enable additional logging for debug purposes, go to repo -> Settings -> Secrets -> new repo secret
 # add ACTIONS_RUNNER_DEBUG, set it to `true` (runner level)
