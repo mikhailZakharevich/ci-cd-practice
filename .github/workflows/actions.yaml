@@ -10,6 +10,17 @@ on:
                          # ex: "1 * * * *" - the job will be run at first minute of every hour (12.01, 13.01 etc.)
   pull_request:
     types: [closed, assigned, opened, reopened]
+    branches: # run the action only for the specified branches
+              # branches-ignore can be used instead
+      - master
+      - 'feature/*' # matches strings without '/', e.g.,
+                    # will match: feature/featA, feature/featB etc., but not `feature/feat/featA`
+      - 'feature/**' # matches any string, e.g., will match: feature/feat/featA
+      - '!feature/featC' # will ignore this branch, should be put after other matches
+    tags:
+      - v1.*
+    paths:
+      - '**.js' # workflow will run for any .js file
 
 # to enable additional logging for debug purposes, go to repo -> Settings -> Secrets -> new repo secret
 # add ACTIONS_RUNNER_DEBUG, set it to `true` (runner level)
